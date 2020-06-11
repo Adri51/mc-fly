@@ -27,13 +27,19 @@ export class NotaService {
         return nota;
     }
 
-
-    notaFavorita() {
-
-
+    async updateNote(noteID: string, createNoteDTO: CreateProductDTO): Promise<Nota> {
+        const updateNote = this.notaModel.findByIdAndupdate(noteID, createNoteDTO, { new: true });
+        return updateNote
     }
 
-    getFavoritas() {
-
+    async getfavorito(favorito: string): Promise<Nota> {
+        const nota = await this.notaModel.find(favorito);
+        return nota;
     }
+
+    // async buscarFavoritos(favorito: String): Promise<Nota> {
+    //     const favoritos = this.notaModel.find({ where: { favorito: "true" } });
+    //     console.log(favorito)
+    //     return favoritos
+    // }
 }
